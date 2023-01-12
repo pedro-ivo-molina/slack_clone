@@ -20,7 +20,9 @@ defmodule SlackCloneWeb.Router do
   scope "/", SlackCloneWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live_session :chat, on_mount: SlackCloneWeb.Live.Auth do
+      live "/", Live.IndexView
+    end
   end
 
   # Other scopes may use custom stacks.
