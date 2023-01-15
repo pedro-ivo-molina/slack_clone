@@ -21,6 +21,8 @@ defmodule SlackCloneWeb.Router do
     pipe_through :browser
 
     live_session :chat, on_mount: SlackCloneWeb.Live.Auth do
+      live "/rooms/join/:invite_code", Live.JoinRoom
+
       live "/", Live.IndexView
     end
   end

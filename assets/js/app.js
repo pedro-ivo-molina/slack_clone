@@ -30,6 +30,11 @@ topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
 window.addEventListener("phx:page-loading-start", info => topbar.show())
 window.addEventListener("phx:page-loading-stop", info => topbar.hide())
 
+// Listening to the copy invite code link method in live view and copying it to the users clipboard
+window.addEventListener("phx:copy_invite_code_link", (e) => {
+  navigator.clipboard.writeText(e.detail.link);
+})
+
 // connect if there are any LiveViews on the page
 liveSocket.connect()
 
