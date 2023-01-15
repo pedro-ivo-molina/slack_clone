@@ -4,8 +4,8 @@ defmodule SlackCloneWeb.Live.Components.Sidebar do
   alias SlackClone.Rooms
 
   @impl true
-  def update(%{current_user: current_user} = _assigns, socket) do
-    {:ok, assign(socket, current_user: current_user, user_rooms: Rooms.get_user_rooms(current_user.id))}
+  def update(%{current_user: current_user, current_room_id: current_room_id} = _assigns, socket) do
+    {:ok, assign(socket, current_user: current_user, current_room_id: current_room_id, user_rooms: Rooms.get_user_rooms(current_user.id))}
   end
 
   @impl true
@@ -34,7 +34,7 @@ defmodule SlackCloneWeb.Live.Components.Sidebar do
       </div>
       <div class="px-4 mb-2 font-sans">Rooms</div>
       <div class="bg-teal-600 mb-6 py-1 px-4 text-white font-semi-bold ">
-        <%= for room <- @user_rooms do %>
+          <%= for room <- @user_rooms do %>
           <div class={if Integer.to_string(room.id) == @current_room_id, do: "bg-blue-800", else: ""}>
             <a class="link" phx-click="enter-room" phx-value-id={room.id}>
               <span class="pr-1 text-gray-400">#</span> <%= room.name %>
