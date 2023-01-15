@@ -10,7 +10,7 @@ defmodule SlackClone.Rooms.Room do
 
     belongs_to :user, SlackClone.Accounts.User
 
-    timestamps()
+    timestamps([{:inserted_at,:created_at}, {:updated_at, false}])
   end
 
   def changeset(room, attrs, opts \\ []) do

@@ -7,6 +7,8 @@ defmodule SlackClone.Repo.Migrations.CreateRooms do
       add :name, :string, null: false
       add :description, :text, null: false
       add :invite_code, :string, null: false
+
+      timestamps([{:inserted_at,:created_at}, {:updated_at, false}])
     end
 
     create unique_index(:rooms, [:user_id, :name])
